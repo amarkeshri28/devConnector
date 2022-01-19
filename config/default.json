@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://amar:amar123@cluster0.01b0b.mongodb.net/devconnect?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://amar:amar123@cluster0.01b0b.mongodb.net/devconnect?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
 }
