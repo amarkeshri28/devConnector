@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const profileSchema = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -8,12 +8,15 @@ const profileSchema = new mongoose.Schema({
     company: {
         type: String
     },
+    website: {
+        type: String
+    },
     location: {
         type: String
     },
     status: {
         type: String,
-        requried: true
+        required: true
     },
     skills: {
         type: [String],
@@ -29,17 +32,17 @@ const profileSchema = new mongoose.Schema({
         {
             title: {
                 type: String,
-                requried: true
+                required: true
             },
             company: {
                 type: String,
-                requried: true
+                required: true
             },
             location: {
                 type: String
             },
             from: {
-                tpye: Date,
+                type: Date,
                 required: true
             },
             to: {
@@ -47,12 +50,11 @@ const profileSchema = new mongoose.Schema({
             },
             current: {
                 type: Boolean,
-                required: true
+                default: false
             },
             description: {
                 type: String
             }
-
         }
     ],
     education: [
@@ -70,7 +72,7 @@ const profileSchema = new mongoose.Schema({
                 required: true
             },
             from: {
-                tpye: Date,
+                type: Date,
                 required: true
             },
             to: {
@@ -78,26 +80,24 @@ const profileSchema = new mongoose.Schema({
             },
             current: {
                 type: Boolean,
-                required: true
+                default: false
             },
             description: {
                 type: String
             }
-
         }
     ],
-    social:
-    {
-        linkdin: {
+    social: {
+        youtube: {
             type: String
         },
-        youtube: {
+        twitter: {
             type: String
         },
         facebook: {
             type: String
         },
-        twitter: {
+        linkedin: {
             type: String
         },
         instagram: {
@@ -108,9 +108,6 @@ const profileSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-
-
 });
 
-const Profile = mongoose.model('Profile', profileSchema);
-module.exports = Profile;
+module.exports = mongoose.model('profile', ProfileSchema);
