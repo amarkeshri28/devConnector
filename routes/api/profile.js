@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const { body, validationResult } = require('express-validator');
+const { response } = require("express");
 
 
 //@route   GET api/profile/me
@@ -18,8 +19,8 @@ router.get('/me', auth, async (req, res) => {
         res.json(profile);
 
     } catch (error) {
-        console.log(error.message);
-        res.status(500).json('Server error');
+        console.error(error.message);
+        res.status(500).json({ msg: 'Server error' });
     }
 });
 
@@ -28,7 +29,7 @@ router.get('/me', auth, async (req, res) => {
 // @access Private  
 
 router.post('/', [auth, [
-    body('status', 'status is required').not().isEmpty(),
+    body('status', 'Status is required').not().isEmpty(),
     body('skills', 'Skills is required').not().isEmpty()
 ]
 ], async (req, res) => {
@@ -49,7 +50,7 @@ router.post('/', [auth, [
         facebook,
         twitter,
         instagram,
-        linkdin
+        linkedin,
     } = req.body;
 
     //build profile object
@@ -70,7 +71,7 @@ router.post('/', [auth, [
     profileFields.social = {};
     if (youtube) profileFields.social.youtube = youtube;
     if (twitter) profileFields.social.twitter = twitter;
-    if (linkdin) profileFields.social.linkdin = linkdin;
+    if (linkedin) profileFields.social.linkedin = linkedin;
     if (facebook) profileFields.social.facebook = facebook;
     if (instagram) profileFields.social.instagram = instagram;
 
@@ -93,12 +94,47 @@ router.post('/', [auth, [
         res.json(profile);
 
     } catch (error) {
-        console.log(error.message);
-        res.status(500).json('Server error');
+        console.error(error.message);
+        res.status(500).json({ msg: 'Server error' });
     }
 
     res.send('hello');
 }
 );
+
+//@route   GET api/profile
+// @des    Get all profile
+// @access Public
+
+router.get('/', async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+        res.json(profiles);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json("Server error");
+    }
+});
+
+//@route   GET api/profile/user/:user_id
+// @des    Get  profile by user ID
+// @access Public
+
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+        if (!profile) {
+            return res.status(400).json({ msg: 'Profile not found' });
+        }
+        res.json(profile);
+    } catch (error) {
+        console.error(error.message);
+        if (error.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'Profile not found' });
+
+        }
+        res.status(500).json({ msg: 'Server error' });
+    }
+});
 
 module.exports = router;
