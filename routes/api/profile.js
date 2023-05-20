@@ -98,12 +98,12 @@ router.post('/', [auth, [
         res.status(500).json({ msg: 'Server error' });
     }
 
-    res.send('hello');
+    // res.send('hello');
 }
 );
 
 //@route   GET api/profile
-// @des    Get all profile
+// @des    Get all profiles
 // @access Public
 
 router.get('/', async (req, res) => {
@@ -112,7 +112,7 @@ router.get('/', async (req, res) => {
         res.json(profiles);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json("Server error");
+        res.status(500).send("Server error");
     }
 });
 
@@ -134,6 +134,28 @@ router.get('/user/:user_id', async (req, res) => {
 
         }
         res.status(500).json({ msg: 'Server error' });
+    }
+});
+
+//@route   DELETE api/profile
+// @des    Delete profile, user, posts
+// @access Private
+
+router.delete('/', auth, async (req, res) => {
+    try {
+        //@todo remove user's posts
+
+        //Remove profile
+        await Profile.findOneAndRemove({ user: req.user.id });
+
+        //Remove Profile
+        await User.findOneAndRemove({ user: req.user.id });
+
+
+        res.json({ msg: 'user deleted' });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server error");
     }
 });
 

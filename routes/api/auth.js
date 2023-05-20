@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 //@route   GET api/auth
-// @des    Test route
+// @des    get current user details
 // @access Public
 router.get('/', auth, async (req, res) => {
     try {
@@ -16,12 +16,12 @@ router.get('/', auth, async (req, res) => {
         res.json({ user });
     } catch (error) {
         console.log(error.message);
-        res.status(500).json('server error');
+        res.status(500).send('server error');
     }
 });
 
 //@route   POST api/auth
-// @des    \authenticate user &get token
+// @des    login user
 // @access Public
 router.post('/', [
     body('email', 'Please include a valid email').isEmail(),
