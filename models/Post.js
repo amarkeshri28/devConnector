@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PostSchema = new Schema({
+const PostSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -10,10 +10,10 @@ const PostSchema = new Schema({
         required: true
     },
     name: {
-        typr: String
+        type: String
     },
     avatar: {
-        tpye: String
+        type: String
     },
     likes: [
         {
