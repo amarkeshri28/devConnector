@@ -31,13 +31,13 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path='/' Component={Landing} />
+          <Route exact path='/' component={Landing} />
           <section className="container">
             <Alert />
             <Switch>
-              <Route exact path='/register' Component={Register} />
-              <Route exact path='/login' Component={Login} />
-              <PrivateRoute exact path='/dashboard' Component={Dashboard} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={Login} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
             </Switch>
           </section>
         </Fragment>
