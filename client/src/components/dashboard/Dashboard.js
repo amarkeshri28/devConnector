@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getCurrentProfile } from '../../actions/profile';
 import { Fragment, useEffect } from 'react';
 import Spinner from '../layout/Spinner';
+import DashboardAction from './DashboardAction';
 
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
@@ -17,7 +18,9 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
             <i className="fas fa-user"> </i> Welcome {user && user.name}
         </p>
         {profile !== null ? (
-            <Fragment>Has</Fragment>
+            <Fragment>
+                <DashboardAction />
+            </Fragment>
         ) : (
             <Fragment>
                 <p>You have not yet created a profile, please add some info</p>
