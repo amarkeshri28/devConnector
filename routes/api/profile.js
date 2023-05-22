@@ -23,7 +23,7 @@ router.get('/me', auth, async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 });
 
@@ -98,7 +98,7 @@ router.post('/', [auth, [
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 
     // res.send('hello');
@@ -115,7 +115,7 @@ router.get('/', async (req, res) => {
         res.json(profiles);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ msg: 'Server error' })
+        res.status(500).json('Server Error');
     }
 });
 
@@ -136,7 +136,7 @@ router.get('/user/:user_id', async (req, res) => {
             return res.status(400).json({ msg: 'Profile not found' });
 
         }
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 });
 
@@ -158,7 +158,7 @@ router.delete('/', auth, async (req, res) => {
         res.json({ msg: 'user deleted' });
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 });
 
@@ -204,7 +204,7 @@ router.put('/experience', [auth, [
 
         } catch (err) {
             console.error(err.message);
-            res.status(500).json({ msg: 'Server error' });
+            res.status(500).json('Server Error');
         }
 
     });
@@ -225,7 +225,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     }
     catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 });
 
@@ -273,7 +273,7 @@ router.put('/education', [auth, [
 
         } catch (err) {
             console.error(err.message);
-            res.status(500).json({ msg: 'Server error' });
+            res.status(500).json('Server Error');
         }
 
     });
@@ -294,7 +294,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     }
     catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json('Server Error');
     }
 });
 
