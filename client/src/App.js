@@ -1,15 +1,17 @@
 import { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
-import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 
 if (localStorage.token) {
@@ -29,15 +31,14 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Routes>
-            <Route exact path='/' Component={Landing} />
-          </Routes>
+          <Route exact path='/' Component={Landing} />
           <section className="container">
             <Alert />
-            <Routes>
+            <Switch>
               <Route exact path='/register' Component={Register} />
               <Route exact path='/login' Component={Login} />
-            </Routes>
+              <PrivateRoute exact path='/dashboard' Component={Dashboard} />
+            </Switch>
           </section>
         </Fragment>
       </Router>
