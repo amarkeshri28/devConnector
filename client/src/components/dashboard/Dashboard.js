@@ -5,6 +5,8 @@ import { getCurrentProfile } from '../../actions/profile';
 import { Fragment, useEffect } from 'react';
 import Spinner from '../layout/Spinner';
 import DashboardAction from './DashboardAction';
+import Experience from './Experience';
+import Education from './Education';
 
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
@@ -20,6 +22,8 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
         {profile !== null ? (
             <Fragment>
                 <DashboardAction />
+                <Experience experience={profile.experience} />
+                <Education education={profile.education} />
             </Fragment>
         ) : (
             <Fragment>
