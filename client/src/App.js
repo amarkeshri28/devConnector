@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './App.css';
 import store from './store';
+import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Alert from './components/layout/Alert';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profile-forms/CreateProfile';
@@ -18,6 +16,8 @@ import AddEducation from './components/profile-forms/AddEducation';
 import AddExperience from './components/profile-forms/AddExperience';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,7 +49,6 @@ const App = () => {
               <PrivateRoute exact path='/edit-profile' component={EditProfile} />
               <PrivateRoute exact path='/add-education' component={AddEducation} />
               <PrivateRoute exact path='/add-experience' component={AddExperience} />
-
             </Switch>
           </section>
         </Fragment>

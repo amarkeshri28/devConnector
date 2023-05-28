@@ -61,12 +61,12 @@ router.post('/', [auth, [
     //build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (company) profileFields.company = company;
+    profileFields.company = company;
     if (status) profileFields.status = status;
-    if (website) profileFields.website = website;
-    if (bio) profileFields.bio = bio;
-    if (location) profileFields.location = location;
-    if (githubusername) profileFields.githubusername = githubusername;
+    profileFields.website = website;
+    profileFields.bio = bio;
+    profileFields.location = location;
+    profileFields.githubusername = githubusername;
 
     if (skills) {
         profileFields.skills = skills.split(',').map(skill => skill.trim());
@@ -74,11 +74,11 @@ router.post('/', [auth, [
 
     //build social object
     profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
-    if (twitter) profileFields.social.twitter = twitter;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    if (facebook) profileFields.social.facebook = facebook;
-    if (instagram) profileFields.social.instagram = instagram;
+    profileFields.social.youtube = youtube;
+    profileFields.social.twitter = twitter;
+    profileFields.social.linkedin = linkedin;
+    profileFields.social.facebook = facebook;
+    profileFields.social.instagram = instagram;
 
 
     try {
