@@ -1,5 +1,0 @@
-{
-    "jwtSecret": "mysecrettoken",
-    "mongoURI": "mongodb+srv://amar:amar123@cluster0.01b0b.mongodb.net/devconnect?retryWrites=true&w=majority",
-    "githubToken": "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"
-}
